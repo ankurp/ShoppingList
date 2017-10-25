@@ -50,7 +50,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tPo-V2-bOL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="596" y="19"/>
+            <point key="canvasLocation" x="-128" y="21"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NPJ-0O-4xe">
@@ -61,53 +61,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="pxz-Q7-UcC" kind="relationship" relationship="rootViewController" id="QYP-J2-dfQ"/>
+                        <segue destination="6sN-dh-SzR" kind="relationship" relationship="rootViewController" id="Kcx-6Q-cLf"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kk1-Mm-tAh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1080" y="21"/>
-        </scene>
-        <!--Shopping List Table View Controller-->
-        <scene sceneID="i30-pC-MKc">
-            <objects>
-                <tableViewController id="pxz-Q7-UcC" customClass="ShoppingListTableViewController" customModule="ShoppingList" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="WSS-kf-lKt">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListCell" textLabel="DFv-bS-V89" style="IBUITableViewCellStyleDefault" id="6iM-2Y-fCi">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6iM-2Y-fCi" id="cuw-WM-jgb">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DFv-bS-V89">
-                                            <rect key="frame" x="16" y="0.0" width="344" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="6sN-dh-SzR" kind="show" id="jxy-Ie-dwh"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="pxz-Q7-UcC" id="u0G-9t-P9X"/>
-                            <outlet property="delegate" destination="pxz-Q7-UcC" id="jjH-S6-VO9"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="Awv-wb-Ude"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2E1-43-QoB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-282" y="20"/>
         </scene>
     </scenes>
 </document>

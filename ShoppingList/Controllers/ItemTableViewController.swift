@@ -10,17 +10,18 @@ import UIKit
 
 class ItemTableViewController: UITableViewController {
   
-  var list: ShoppingList!
-  var items: [Item] {
-    get {
-      return list.items
+  var items: [Item] = [Item].load() {
+    didSet {
+      items.save()
     }
   }
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    title = list.name
+    title = "Shopping List Items"
+
+    navigationController?.navigationBar.prefersLargeTitles = true
 
     navigationItem.rightBarButtonItems?.append(editButtonItem)
   }
@@ -32,7 +33,7 @@ class ItemTableViewController: UITableViewController {
   // MARK: - Table view data source
   
   override func numberOfSections(in tableView: UITableView) -> Int {
-    return 1
+    return 2
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -68,7 +69,7 @@ class ItemTableViewController: UITableViewController {
       if let itemName = alert.textFields?[0].text {
         let itemCount = self.items.count;
         let item = Item(name: itemName)
-        self.list.add(item)
+        self.items.append(item)
         self.tableView.insertRows(at: [IndexPath(row: itemCount, section: 0)], with: .top)
       }
     }))
@@ -82,13 +83,13 @@ class ItemTableViewController: UITableViewController {
   
 	override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
-      list.remove(at: indexPath.row)
+      items.remove(at: indexPath.row)
       tableView.deleteRows(at: [indexPath], with: .fade)
     }
   }
   
   override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-    list.swapItem(fromIndexPath.row, to.row)
+    items.swapAt(fromIndexPath.row, to.row)
   }
   
   override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
@@ -96,7 +97,7 @@ class ItemTableViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    list.toggleCheckItem(atIndex: indexPath.row)
+    items[indexPath.row] = items[indexPath.row].toggleCheck()
     tableView.reloadRows(at: [indexPath], with: .middle)
   }
 
