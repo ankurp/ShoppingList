@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ItemTableViewController: UITableViewController {
+class ItemTableViewController: BaseTableViewController {
   
   var list: ShoppingList!
   var items: [Item] {
@@ -56,24 +56,14 @@ class ItemTableViewController: UITableViewController {
 
   
   @IBAction func didSelectAdd(_ sender: UIBarButtonItem) {
-    let alert = UIAlertController(title: "New shopping list item",
-                                  message: "Enter item to add to the shopping list:",
-                                  preferredStyle: .alert)
-    
-    alert.addTextField(configurationHandler: nil)
-    
-    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-    
-    alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { (_) in
-      if let itemName = alert.textFields?[0].text {
-        let itemCount = self.items.count;
-        let item = Item(name: itemName)
-        self.list.add(item)
-        self.tableView.insertRows(at: [IndexPath(row: itemCount, section: 0)], with: .top)
-      }
-    }))
-    
-    self.present(alert, animated: true, completion: nil)
+    requestInput(title: "New shopping list item",
+                 message: "Enter item to add to the shopping list:",
+                 handler: { (itemName) in
+      let itemCount = self.items.count;
+      let item = Item(name: itemName)
+      self.list.add(item)
+      self.tableView.insertRows(at: [IndexPath(row: itemCount, section: 0)], with: .top)
+    })
   }
   
   override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShoppingListTableViewController: UITableViewController {
+class ShoppingListTableViewController: BaseTableViewController {
 
   var lists: [ShoppingList] = [ShoppingList].load() {
     didSet {
@@ -17,24 +17,14 @@ class ShoppingListTableViewController: UITableViewController {
   }
 
   @IBAction func didSelectAdd(_ sender: UIBarButtonItem) {
-    let alert = UIAlertController(title: "Shopping list name",
-                                  message: "Enter name for the new shopping list:",
-                                  preferredStyle: .alert)
-    
-    alert.addTextField(configurationHandler: nil)
-    
-    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-    
-    alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { (_) in
-      if let listName = alert.textFields?[0].text {
-        let listCount = self.lists.count;
-        let list = ShoppingList(name: listName, items: [])
-        self.lists.append(list)
-        self.tableView.insertRows(at: [IndexPath(row: listCount, section: 0)], with: .top)
-      }
-    }))
-    
-    self.present(alert, animated: true, completion: nil)
+    requestInput(title: "Shopping list name",
+                 message: "Enter name for the new shopping list:",
+                 handler: { (listName) in
+      let listCount = self.lists.count;
+      let list = ShoppingList(name: listName, items: [])
+      self.lists.append(list)
+      self.tableView.insertRows(at: [IndexPath(row: listCount, section: 0)], with: .top)
+    })
   }
   
   override func viewDidLoad() {

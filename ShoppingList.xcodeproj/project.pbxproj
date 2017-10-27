@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9238A06F1FA3B46D00BF9017 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9238A06E1FA3B46D00BF9017 /* BaseTableViewController.swift */; };
 		928EA6BA1FA1026D007356B7 /* ShoppingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928EA6B91FA1026D007356B7 /* ShoppingList.swift */; };
 		928EA6BC1FA10619007356B7 /* ShoppingListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928EA6BB1FA10619007356B7 /* ShoppingListTableViewController.swift */; };
 		92A4892D1F9920F200C6DE2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A4892C1F9920F200C6DE2B /* AppDelegate.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9238A06E1FA3B46D00BF9017 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		928EA6B91FA1026D007356B7 /* ShoppingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingList.swift; sourceTree = "<group>"; };
 		928EA6BB1FA10619007356B7 /* ShoppingListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListTableViewController.swift; sourceTree = "<group>"; };
 		92A489291F9920F200C6DE2B /* ShoppingList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoppingList.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +87,7 @@
 			children = (
 				92A489441F99239100C6DE2B /* ItemTableViewController.swift */,
 				928EA6BB1FA10619007356B7 /* ShoppingListTableViewController.swift */,
+				9238A06E1FA3B46D00BF9017 /* BaseTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 				928EA6BC1FA10619007356B7 /* ShoppingListTableViewController.swift in Sources */,
 				92A489421F9921B900C6DE2B /* Item.swift in Sources */,
 				928EA6BA1FA1026D007356B7 /* ShoppingList.swift in Sources */,
+				9238A06F1FA3B46D00BF9017 /* BaseTableViewController.swift in Sources */,
 				92A489451F99239100C6DE2B /* ItemTableViewController.swift in Sources */,
 				92A4892D1F9920F200C6DE2B /* AppDelegate.swift in Sources */,
 			);
