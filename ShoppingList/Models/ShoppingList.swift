@@ -1,8 +1,15 @@
 import Foundation
 
+let listDidUpdateNotification = "listDidUpdateNotification"
+
 class ShoppingList: Codable {
   var name: String
-  var items: [Item]
+  var items: [Item] {
+    didSet {
+      NotificationCenter.default.post(name:
+        NSNotification.Name(rawValue: listDidUpdateNotification), object: nil)
+    }
+  }
 
   init(name: String, items: [Item] = []) {
     self.name = name
@@ -39,6 +46,6 @@ extension Array where Element == ShoppingList {
       return elements
     }
     
-    return [ShoppingList(name: "List")]
+    return []
   }
 }

@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Item Table View Controller-->
         <scene sceneID="aVe-WG-o9C">
             <objects>
                 <tableViewController id="6sN-dh-SzR" customClass="ItemTableViewController" customModule="ShoppingList" customModuleProvider="target" sceneMemberID="viewController">
@@ -40,7 +40,7 @@
                             <outlet property="delegate" destination="6sN-dh-SzR" id="zMe-F0-5dB"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Pqy-sB-dNZ">
+                    <navigationItem key="navigationItem" id="Pqy-sB-dNZ">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="PSU-H7-DGw">
                             <connections>
                                 <action selector="didSelectAdd:" destination="6sN-dh-SzR" id="R2O-Bj-W7h"/>
@@ -50,7 +50,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tPo-V2-bOL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="596" y="19"/>
+            <point key="canvasLocation" x="614" y="20"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NPJ-0O-4xe">
@@ -77,15 +77,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListCell" textLabel="DFv-bS-V89" style="IBUITableViewCellStyleDefault" id="6iM-2Y-fCi">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ListCell" textLabel="DFv-bS-V89" style="IBUITableViewCellStyleDefault" id="6iM-2Y-fCi">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6iM-2Y-fCi" id="cuw-WM-jgb">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DFv-bS-V89">
-                                            <rect key="frame" x="16" y="0.0" width="344" height="43.5"/>
+                                            <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -103,11 +103,17 @@
                             <outlet property="delegate" destination="pxz-Q7-UcC" id="jjH-S6-VO9"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Awv-wb-Ude"/>
+                    <navigationItem key="navigationItem" id="Awv-wb-Ude">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="eKy-gU-SUf">
+                            <connections>
+                                <action selector="didSelectAdd:" destination="pxz-Q7-UcC" id="68E-pm-mm6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2E1-43-QoB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-282" y="20"/>
+            <point key="canvasLocation" x="-226" y="20"/>
         </scene>
     </scenes>
 </document>
