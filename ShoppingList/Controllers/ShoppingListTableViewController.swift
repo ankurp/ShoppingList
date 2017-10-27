@@ -9,7 +9,7 @@
 import UIKit
 
 class ShoppingListTableViewController: BaseTableViewController {
-
+  
   var lists: [ShoppingList] = [ShoppingList].load() {
     didSet {
       lists.save()
@@ -22,6 +22,7 @@ class ShoppingListTableViewController: BaseTableViewController {
                  handler: { (listName) in
       let listCount = self.lists.count;
       let list = ShoppingList(name: listName, items: [])
+      list.onSave = self.lists.save
       self.lists.append(list)
       self.tableView.insertRows(at: [IndexPath(row: listCount, section: 0)], with: .top)
     })
@@ -36,13 +37,11 @@ class ShoppingListTableViewController: BaseTableViewController {
     
     navigationItem.rightBarButtonItems?.append(editButtonItem)
 
-    NotificationCenter.default.addObserver(self, selector: #selector(getDataUpdate), name: NSNotification.Name(rawValue: listDidUpdateNotification), object: nil)
+    for list in lists {
+      list.onSave = self.lists.save
+    }
   }
   
-  @objc func getDataUpdate() {
-    lists.save()
-  }
-
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }

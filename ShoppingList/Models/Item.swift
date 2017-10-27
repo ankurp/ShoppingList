@@ -22,3 +22,20 @@ class Item: Codable {
     return Item(name: name, isChecked: !isChecked)
   }
 }
+
+extension Array where Element == ShoppingList {
+  func save() {
+    let encoder = try? PropertyListEncoder().encode(self)
+    UserDefaults.standard.set(encoder, forKey: String(describing: Element.self))
+    UserDefaults.standard.synchronize()
+  }
+  
+  static func load() -> [Element] {
+    if let data = UserDefaults.standard.value(forKey: String(describing: Element.self)) as? Data,
+      let elements = try? PropertyListDecoder().decode([Element].self, from: data){
+      return elements
+    }
+    
+    return []
+  }
+}

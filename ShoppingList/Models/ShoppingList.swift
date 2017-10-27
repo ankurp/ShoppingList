@@ -1,21 +1,24 @@
 import Foundation
 
-let listDidUpdateNotification = "listDidUpdateNotification"
-
 class ShoppingList: Codable {
   var name: String
   var items: [Item] {
     didSet {
-      NotificationCenter.default.post(name:
-        NSNotification.Name(rawValue: listDidUpdateNotification), object: nil)
+      onSave()
     }
   }
+  var onSave: () -> () = {}
 
   init(name: String, items: [Item] = []) {
     self.name = name
     self.items = items
   }
   
+  convenience init(name: String, items: [Item], onSave: () -> ()) {
+    self.init(name: name, items: items)
+    
+  }
+
   func add(_ item: Item) {
     self.items.append(item)
   }
@@ -31,21 +34,14 @@ class ShoppingList: Codable {
   func toggleCheckItem(atIndex index: Int) {
     items[index] = items[index].toggleCheck()
   }
-}
-
-extension Array where Element == ShoppingList {
-  func save() {
-    let encoder = try? PropertyListEncoder().encode(self)
-    UserDefaults.standard.set(encoder, forKey: String(describing: Element.self))
-    UserDefaults.standard.synchronize()
+  
+  func description() -> String {
+    return name
   }
   
-  static func load() -> [Element] {
-    if let data = UserDefaults.standard.value(forKey: String(describing: Element.self)) as? Data,
-      let elements = try? PropertyListDecoder().decode([Element].self, from: data){
-      return elements
-    }
-    
-    return []
+  private enum CodingKeys: String, CodingKey {
+    case name
+    case items
   }
 }
+
