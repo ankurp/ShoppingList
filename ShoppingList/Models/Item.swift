@@ -23,7 +23,7 @@ class Item: Codable {
   }
 }
 
-extension Array where Element == Item {
+extension Array where Element == ShoppingList {
   func save() {
     let encoder = try? PropertyListEncoder().encode(self)
     UserDefaults.standard.set(encoder, forKey: String(describing: Element.self))
@@ -32,8 +32,11 @@ extension Array where Element == Item {
   
   static func load() -> [Element] {
     if let data = UserDefaults.standard.value(forKey: String(describing: Element.self)) as? Data,
-       let items = try? PropertyListDecoder().decode([Element].self, from: data){
-      return items
+      let elements = try? PropertyListDecoder().decode([Element].self, from: data){
+      for element in elements {
+        element.onUpdate = elements.save
+      }
+      return elements
     }
     
     return []

@@ -8,18 +8,20 @@
 
 import UIKit
 
-class ItemTableViewController: UITableViewController {
+class ItemTableViewController: BaseTableViewController {
   
-  var items: [Item] = [Item].load() {
-    didSet {
-      items.save()
+  var list: ShoppingList!
+  var items: [Item] {
+    get {
+      return list.items
     }
   }
+
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    title = "Shopping List Items"
+    title = list.name
 
     navigationController?.navigationBar.prefersLargeTitles = true
 
@@ -57,24 +59,14 @@ class ItemTableViewController: UITableViewController {
 
   
   @IBAction func didSelectAdd(_ sender: UIBarButtonItem) {
-    let alert = UIAlertController(title: "New shopping list item",
-                                  message: "Enter item to add to the shopping list:",
-                                  preferredStyle: .alert)
-    
-    alert.addTextField(configurationHandler: nil)
-    
-    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-    
-    alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { (_) in
-      if let itemName = alert.textFields?[0].text {
-        let itemCount = self.items.count;
-        let item = Item(name: itemName)
-        self.items.append(item)
-        self.tableView.insertRows(at: [IndexPath(row: itemCount, section: 0)], with: .top)
-      }
-    }))
-    
-    self.present(alert, animated: true, completion: nil)
+    requestInput(title: "New shopping list item",
+                 message: "Enter item to add to the shopping list:",
+                 handler: { (itemName) in
+      let itemCount = self.items.count;
+      let item = Item(name: itemName)
+      self.list.add(item)
+      self.tableView.insertRows(at: [IndexPath(row: itemCount, section: 0)], with: .top)
+    })
   }
   
   override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -83,13 +75,13 @@ class ItemTableViewController: UITableViewController {
   
 	override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
-      items.remove(at: indexPath.row)
+      list.remove(at: indexPath.row)
       tableView.deleteRows(at: [indexPath], with: .fade)
     }
   }
   
   override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-    items.swapAt(fromIndexPath.row, to.row)
+    list.swapItem(fromIndexPath.row, to.row)
   }
   
   override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
@@ -97,7 +89,7 @@ class ItemTableViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    items[indexPath.row] = items[indexPath.row].toggleCheck()
+    list.toggleCheckItem(atIndex: indexPath.row)
     tableView.reloadRows(at: [indexPath], with: .middle)
   }
 
