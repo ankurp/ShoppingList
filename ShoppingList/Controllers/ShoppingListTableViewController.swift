@@ -2,11 +2,7 @@ import UIKit
 
 class ShoppingListTableViewController: BaseTableViewController {
   
-  var lists: [ShoppingList] = [ShoppingList].load() {
-    didSet {
-      lists.save()
-    }
-  }
+  var lists: [ShoppingList] = []
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -16,6 +12,22 @@ class ShoppingListTableViewController: BaseTableViewController {
     navigationController?.navigationBar.prefersLargeTitles = true
     
     navigationItem.rightBarButtonItems?.append(editButtonItem)
+    
+    refreshControl = UIRefreshControl()
+    refreshControl?.addTarget(self, action: #selector(didPullDownForRefresh), for: .valueChanged)
+    loadData()
+  }
+  
+  @objc func didPullDownForRefresh(_ sender: UIRefreshControl) {
+    loadData()
+  }
+  
+  func loadData() {
+    ShoppingList.load() { lists in
+      self.lists = lists
+      self.tableView.reloadData()
+      self.refreshControl?.endRefreshing()
+    }
   }
   
   override func didReceiveMemoryWarning() {
@@ -27,9 +39,10 @@ class ShoppingListTableViewController: BaseTableViewController {
                  message: "Enter name for the new shopping list:",
                  handler: { (listName) in
                   let listCount = self.lists.count;
-                  let list = ShoppingList(name: listName, items: [], onUpdate: self.lists.save)
-                  self.lists.append(list)
-                  self.tableView.insertRows(at: [IndexPath(row: listCount, section: 0)], with: .top)
+                  ShoppingList(name: listName).save() { list in
+                    self.lists.append(list)
+                    self.tableView.insertRows(at: [IndexPath(row: listCount, section: 0)], with: .top)
+                  }
     })
   }
   
@@ -58,8 +71,11 @@ class ShoppingListTableViewController: BaseTableViewController {
   
   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
-      lists.remove(at: indexPath.row)
-      tableView.deleteRows(at: [indexPath], with: .fade)
+      let list = lists[indexPath.row]
+      list.delete() {
+        self.lists.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .fade)
+      }
     }
   }
   

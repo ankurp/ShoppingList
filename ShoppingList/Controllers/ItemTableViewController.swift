@@ -17,14 +17,10 @@ class ItemTableViewController: BaseTableViewController {
     }
   }
 
-
   override func viewDidLoad() {
     super.viewDidLoad()
-
     title = list.name
-
     navigationController?.navigationBar.prefersLargeTitles = true
-
     navigationItem.rightBarButtonItems?.append(editButtonItem)
   }
   
@@ -56,16 +52,16 @@ class ItemTableViewController: BaseTableViewController {
     
     return cell
   }
-
   
   @IBAction func didSelectAdd(_ sender: UIBarButtonItem) {
     requestInput(title: "New shopping list item",
                  message: "Enter item to add to the shopping list:",
                  handler: { (itemName) in
-      let itemCount = self.items.count;
-      let item = Item(name: itemName)
-      self.list.add(item)
-      self.tableView.insertRows(at: [IndexPath(row: itemCount, section: 0)], with: .top)
+                  let item = Item(name: itemName, shoppingListId: self.list.id!)
+                  let insertIndex = self.items.count;
+                  self.list.add(item) {
+                    self.tableView.insertRows(at: [IndexPath(row: insertIndex, section: 0)], with: .top)
+                  }
     })
   }
   
@@ -73,10 +69,11 @@ class ItemTableViewController: BaseTableViewController {
     return true
   }
   
-	override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
-      list.remove(at: indexPath.row)
-      tableView.deleteRows(at: [indexPath], with: .fade)
+      list.remove(at: indexPath.row) {
+        tableView.deleteRows(at: [indexPath], with: .fade)
+      }
     }
   }
   
@@ -89,8 +86,9 @@ class ItemTableViewController: BaseTableViewController {
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    list.toggleCheckItem(atIndex: indexPath.row)
-    tableView.reloadRows(at: [indexPath], with: .middle)
+    list.toggleCheckItem(atIndex: indexPath.row) { _ in
+      tableView.reloadRows(at: [indexPath], with: .middle)
+    }
   }
 
   /*
