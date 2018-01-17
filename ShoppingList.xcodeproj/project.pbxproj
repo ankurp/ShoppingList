@@ -10,6 +10,8 @@
 		9238A0711FA3D08800BF9017 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9238A0701FA3D08800BF9017 /* BaseTableViewController.swift */; };
 		9238A0731FA3D1EA00BF9017 /* ShoppingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9238A0721FA3D1EA00BF9017 /* ShoppingList.swift */; };
 		9238A0751FA3D96400BF9017 /* ShoppingListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9238A0741FA3D96400BF9017 /* ShoppingListTableViewController.swift */; };
+		924B9308200D597B000AA1CC /* LoginTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B9307200D597B000AA1CC /* LoginTableViewController.swift */; };
+		924B930A200D5AA9000AA1CC /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B9309200D5AA9000AA1CC /* Token.swift */; };
 		928188381FE19B3900518AAD /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928188371FE19B3900518AAD /* Request.swift */; };
 		92A4892D1F9920F200C6DE2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A4892C1F9920F200C6DE2B /* AppDelegate.swift */; };
 		92A489321F9920F200C6DE2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92A489301F9920F200C6DE2B /* Main.storyboard */; };
@@ -23,6 +25,8 @@
 		9238A0701FA3D08800BF9017 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		9238A0721FA3D1EA00BF9017 /* ShoppingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingList.swift; sourceTree = "<group>"; };
 		9238A0741FA3D96400BF9017 /* ShoppingListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListTableViewController.swift; sourceTree = "<group>"; };
+		924B9307200D597B000AA1CC /* LoginTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTableViewController.swift; sourceTree = "<group>"; };
+		924B9309200D5AA9000AA1CC /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		928188371FE19B3900518AAD /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		92A489291F9920F200C6DE2B /* ShoppingList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoppingList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92A4892C1F9920F200C6DE2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +93,7 @@
 			children = (
 				92A489411F9921B900C6DE2B /* Item.swift */,
 				9238A0721FA3D1EA00BF9017 /* ShoppingList.swift */,
+				924B9309200D5AA9000AA1CC /* Token.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -99,6 +104,7 @@
 				92A489441F99239100C6DE2B /* ItemTableViewController.swift */,
 				9238A0701FA3D08800BF9017 /* BaseTableViewController.swift */,
 				9238A0741FA3D96400BF9017 /* ShoppingListTableViewController.swift */,
+				924B9307200D597B000AA1CC /* LoginTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -129,7 +135,7 @@
 		92A489211F9920F200C6DE2B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0900;
+				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Encore Dev Labs LLC";
 				TargetAttributes = {
@@ -175,7 +181,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				924B930A200D5AA9000AA1CC /* Token.swift in Sources */,
 				92A489421F9921B900C6DE2B /* Item.swift in Sources */,
+				924B9308200D597B000AA1CC /* LoginTableViewController.swift in Sources */,
 				92A489451F99239100C6DE2B /* ItemTableViewController.swift in Sources */,
 				928188381FE19B3900518AAD /* Request.swift in Sources */,
 				9238A0731FA3D1EA00BF9017 /* ShoppingList.swift in Sources */,

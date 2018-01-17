@@ -3,7 +3,7 @@ import UIKit
 class ShoppingListTableViewController: BaseTableViewController {
   
   var lists: [ShoppingList] = []
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -45,7 +45,13 @@ class ShoppingListTableViewController: BaseTableViewController {
                   }
     })
   }
-  
+
+  @IBAction func didSelectLogoutButton(_ sender: UIBarButtonItem) {
+    UserDefaults.standard.removeObject(forKey: String(describing: Token.self))
+    UserDefaults.standard.synchronize()
+    self.dismiss(animated: true)
+  }
+
   // MARK: - Table view data source
   
   override func numberOfSections(in tableView: UITableView) -> Int {
